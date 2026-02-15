@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SK VIP (PRO VERSION) 🎯</title>
+
+<style>
+body{
+ background:black;
+ font-family:Arial;
+ color:#00ffcc;
+ margin:0;
+}
+
+/* PANEL */
+.panel{
+ width:360px;
+ padding:20px;
+ background:#0a0a0a;
+ border-radius:15px;
+ box-shadow:0 0 60px #00ffcc;
+ position:absolute;
+ top:80px;
+ left:40px;
+ cursor:move;
+}
+
+h2{
+ text-align:center;
+ margin-top:0;
+}
+
+input{
+ width:100%;
+ padding:10px;
+ margin:10px 0;
+ background:black;
+ border:1px solid #00ffcc;
+ color:#00ffcc;
+}
+
+button{
+ width:100%;
+ padding:10px;
+ background:#00ffcc;
+ border:none;
+ font-weight:bold;
+ cursor:pointer;
+}
+
+.result{
+ margin-top:10px;
+ padding:10px;
+ border:1px solid #00ffcc;
+ text-align:center;
+}
+
+/* DEMO AD BOX */
+.adbox{
+ margin-top:15px;
+ padding:10px;
+ border:1px dashed yellow;
+ text-align:center;
+ color:yellow;
+ display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="panel" id="panel">
+<h2>SK VIP (PRO VERSION) 🎯</h2>
+
+<input id="prev" placeholder="Enter Last Result (0-9)">
+<button onclick="predict()">PREDICT</button>
+
+<div class="result" id="num">Number: --</div>
+<div class="result" id="bigsmall">Big/Small: --</div>
+<div class="result" id="color">Color: --</div>
+
+<div class="adbox" id="adbox">
+🔥 Advertisement Showing Here 🔥
+</div>
+
+</div>
+
+<script>
+let adCount=0;
+
+function predict(){
+ let n=parseInt(document.getElementById("prev").value);
+ if(isNaN(n)) return;
+
+ let d=new Date();
+ let total=d.getHours()+d.getMinutes()+n;
+
+ while(total>9){
+   total=total.toString().split('').reduce((a,b)=>+a+ +b);
+ }
+
+ document.getElementById("num").innerText="Number: "+total;
+
+ let bs=(total<=4)?"BIG":"SMALL";
+ document.getElementById("bigsmall").innerText="Big/Small: "+bs;
+
+ let color="";
+ if([1,3,7,9].includes(total)) color="GREEN";
+ else if([2,4,6,8].includes(total)) color="RED";
+ else color="VIOLET";
+
+ document.getElementById("color").innerText="Color: "+color;
+
+ adCount++;
+ if(adCount%3==0){
+   document.getElementById("adbox").style.display="block";
+   setTimeout(()=>{
+     document.getElementById("adbox").style.display="none";
+   },3000);
+ }
+}
+
+/* MOVE PANEL */
+let panel=document.getElementById("panel");
+let x,y,down=false;
+
+panel.onmousedown=e=>{
+ down=true;
+ x=e.offsetX;
+ y=e.offsetY;
+}
+document.onmouseup=()=>down=false;
+document.onmousemove=e=>{
+ if(down){
+   panel.style.left=(e.pageX-x)+"px";
+   panel.style.top=(e.pageY-y)+"px";
+ }
+}
+</script>
+
+</body>
+</html>
