@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4905310642214371"
-     crossorigin="anonymous"></script>
 <title>SK VIP (PRO VERSION) 🎯</title>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4905310642214371"
+
+<!-- AdSense script -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-4905310642214371"
      crossorigin="anonymous"></script>
- <meta name="google-adsense-account" content="ca-pub-4905310642214371">
+
 <style>
 body{
  background:black;
@@ -58,7 +58,7 @@ button{
  text-align:center;
 }
 
-/* DEMO AD BOX */
+/* AD BOX placeholder, sirf trigger ke liye */
 .adbox{
  margin-top:15px;
  padding:10px;
@@ -82,8 +82,17 @@ button{
 <div class="result" id="bigsmall">Big/Small: --</div>
 <div class="result" id="color">Color: --</div>
 
+<!-- Ad container -->
 <div class="adbox" id="adbox">
-🔥 Advertisement Showing Here 🔥
+<!-- Real AdSense ad will show here automatically once approved -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="pub-4905310642214371"
+     data-ad-slot="1234567890"
+     data-ad-format="auto"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 </div>
 
 </div>
@@ -114,12 +123,12 @@ function predict(){
 
  document.getElementById("color").innerText="Color: "+color;
 
+ // Show ad every 3 predictions
  adCount++;
  if(adCount%3==0){
-   document.getElementById("adbox").style.display="block";
-   setTimeout(()=>{
-     document.getElementById("adbox").style.display="none";
-   },3000);
+   let adbox=document.getElementById("adbox");
+   adbox.style.display="block";
+   setTimeout(()=>{ adbox.style.display="none"; },3000);
  }
 }
 
@@ -142,4 +151,4 @@ document.onmousemove=e=>{
 </script>
 
 </body>
-</html>
+ </html>
